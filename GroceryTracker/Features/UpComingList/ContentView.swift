@@ -23,21 +23,16 @@ struct ContentView: View {
                 }
                 .listStyle(PlainListStyle())
                 
-                Button(action: {
-                    isAddingItem.toggle()
-                }) {
-                    Image(systemName: "plus")
-                        .font(.title)
-                        .padding()
-                        .background(Color.accentColor)
-                        .foregroundColor(.white)
-                        .clipShape(Circle())
-                        .shadow(radius: 10)
-                }
-                .padding()
             }
             .navigationTitle("Grocery List")
             .toolbar {
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: toggleAddingItem){
+                        Text("Add")
+                    }
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
@@ -46,6 +41,10 @@ struct ContentView: View {
                 AddItemView()
             }
         }
+    }
+    
+    private func toggleAddingItem(){
+        isAddingItem.toggle()
     }
 
     private func deleteItems(offsets: IndexSet) {
